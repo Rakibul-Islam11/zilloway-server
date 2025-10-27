@@ -24,13 +24,15 @@ app.use(
     cors({
         origin: [
             "https://zilloway.com",
-            "http://localhost:5173", // local dev
-            "https://zillu-web-development-live.web.app"
-        ], // শুধু এই frontend কে অনুমতি দেবে
-        
-        credentials: true, // cookies, authorization headers পাঠাতে অনুমতি দেবে
+            "https://zillu-web-development-live.web.app",
+            "http://localhost:5173",
+        ],
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        credentials: true,
+        allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
+app.options("*", cors());
 app.use(express.json()); // JSON body পার্স করবে
 app.use(express.urlencoded({ extended: true })); // form-data/x-www-form-urlencoded body পার্স করবে
 const rateLimter = rateLimit({
