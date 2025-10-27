@@ -32,7 +32,9 @@ app.use(
         allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
-app.options("*", cors());
+
+// ✅ Render-compatible preflight
+
 app.use(express.json()); // JSON body পার্স করবে
 app.use(express.urlencoded({ extended: true })); // form-data/x-www-form-urlencoded body পার্স করবে
 const rateLimter = rateLimit({
